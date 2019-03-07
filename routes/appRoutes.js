@@ -2,10 +2,23 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
-
+var webtoken = require('./../security/webtoken.js');
 
 
 var quickBookController=require('./../controller/quickBook.controller');
+
+//authentication
+router.use(function(req, res, next) {
+    var login = webtoken.token(req.header('x-auth')).then(function(result) {
+    	// console.log('result:',result)
+        if (result) {
+            // console.log('authenticated!');
+            next();
+        }
+    }, function(error) {
+        res.status(400).send('Invalid Token');
+    });
+})
 
 
 router.get('/', function(req, res) {
