@@ -4,14 +4,14 @@ var makeConnection=require('./utility/utilityModel.js');
 
 function postSalesHeader(input){
 
-	var ourQuery=`Insert into quickBooks.SalesOrderHeader_TB (ID, CUSTACCOUNT, Name ,SalesName,CustomerPO,createdBy) values ('${input.ID}','${input.CUSTACCOUNT}','${input.NAME}','${input.SalesName}','${input.CustomerPO}','${input.createdBy}')`;
+	var ourQuery=`Insert into quickBooks.SalesOrderHeader_TB (ID, CUSTACCOUNT, Name ,SalesName,CustomerPO,createdBy,status) values ('${input.ID}','${input.CUSTACCOUNT}','${input.NAME}','${input.SalesName}','${input.CustomerPO}','${input.createdBy}','${input.status}')`;
 
 	return makeConnection.sqlQueryExecution(ourQuery,mySqlConfig);
 }
 
 function postSalesLinesItems(input){
 
-	var ourQuery=`Insert into quickBooks.salesOrderLine_TB (ID,ITEMID,ITEMNAME,CONFIGID,Qty) values ('${input.ID}', '${input.ITEMID}','${input.ITEMNAME}','${input.CONFIGID}',${input.Qty})`;
+	var ourQuery=`Insert into quickBooks.salesOrderLine_TB (ID,ITEMID,ITEMNAME,CONFIGID,Qty,Amount, status) values ('${input.ID}', '${input.ITEMID}','${input.ITEMNAME}','${input.CONFIGID}',${input.Qty},'${input.Amount}','${input.status}')`;
 
 	return makeConnection.sqlQueryExecution(ourQuery,mySqlConfig);
 }
@@ -24,7 +24,7 @@ function postInvoiceHeader(input){
 }
 
 function postInvoiceLineItems(input){
-	var ourQuery=`Insert into quickBooks.InvoiceLine_TB (invoiceID,ITEMID,ITEMNAME,QTY,CONFIGID)values ('${input.invoiceID}', '${input.ITEMID}','${input.ITEMNAME}','${input.QTY}','${input.CONFIGID}')`;
+	var ourQuery=`Insert into quickBooks.InvoiceLine_TB (invoiceID,ITEMID,ITEMNAME,QTY,CONFIGID,Amount,status)values ('${input.invoiceID}', '${input.ITEMID}','${input.ITEMNAME}','${input.QTY}','${input.CONFIGID}',${input.Amount},'${input.status}')`;
 
 	return makeConnection.sqlQueryExecution(ourQuery,mySqlConfig);
 }
