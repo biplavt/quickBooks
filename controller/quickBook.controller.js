@@ -71,12 +71,167 @@ function pInvoiceLineItems(req,res){
 	})
 }
 
+function gCustomerDetails(req,res){
 
+}
+
+function gSalesOrderList(req,res){
+	// console.log('htere');
+	quickBookModel.getSalesOrderList().then(function (result) {
+		// console.log('result:',result);
+		if (typeof result !== "undefined") {
+			// res.setHeader('Access-Control-Allow-Origin', '*')
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
+
+function gCustomerDetailsFromSalesId(req,res){
+	// console.log("hi");
+	quickBookModel.getCustomerDetailsFromSalesId(req.params.salesId).then(function (result) {
+		// console.log('result:',result);
+		if (typeof result !== "undefined") {
+			// res.setHeader('Access-Control-Allow-Origin', '*')
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
+
+function gSalesOrderDetailsFromSalesId(req,res){
+	// console.log("hi");
+	quickBookModel.getSalesOrderDetailsFromSalesId(req.params.salesId).then(function (result) {
+		if (typeof result !== "undefined") {
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
+
+function gSalesFromCustomer(req,res){
+	quickBookModel.getSalesFromCustomer(req.params.customerAccount).then(function (result) {
+		if (typeof result !== "undefined") {
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
+
+function gInvoiceDetail(req,res){
+	quickBookModel.getInvoiceDetail(req.params.salesId).then(function (result) {
+		if (typeof result !== "undefined") {
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
+
+function gSalesHeaders(req,res){
+	quickBookModel.getSalesHeaders(req.params.salesId).then(function (result) {
+		if (typeof result !== "undefined") {
+			res.send(result);
+
+		} else {
+
+			res.status(200).send([]);
+
+		}
+
+	}, function (error) {
+
+		res.status(400).send({
+
+			status: 400,
+			errorMessage: 'Bad Request!'
+
+		});
+
+	})
+}
 
 
 module.exports={
 	pSalesHeader,
 	pSalesLinesItems,
 	pInvoiceHeader,
-	pInvoiceLineItems
+	pInvoiceLineItems,
+	gCustomerDetails,
+	gSalesOrderList,
+	gCustomerDetailsFromSalesId,
+	gSalesOrderDetailsFromSalesId,
+	gSalesFromCustomer,
+	gInvoiceDetail,
+	gSalesHeaders
+
 }

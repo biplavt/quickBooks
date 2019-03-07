@@ -20,8 +20,17 @@ router.route('/v1/quickBooks/invoiceHeader').post(quickBookController.pInvoiceHe
 
 router.route('/v1/quickBooks/invoiceLineItems').post(quickBookController.pInvoiceLineItems);
 
+router.route('/v1/quickBooks/salesOrders').get(quickBookController.gSalesOrderList);
 
+router.route('/v1/quickBooks/customerDetailFromSales/:salesId').get(quickBookController.gCustomerDetailsFromSalesId);
 
+router.route('/v1/quickBooks/salesOrderDetailsFromSalesId/:salesId').get(quickBookController.gSalesOrderDetailsFromSalesId);
+
+router.route('/v1/quickBooks/salesFromCustomer/:customerAccount').get(quickBookController.gSalesFromCustomer);
+
+router.route('/v1/quickBooks/invoiceDetail/:salesId').get(quickBookController.gInvoiceDetail);
+
+router.route('/v1/quickBooks/salesHeader/:salesId').get(quickBookController.gSalesHeaders);
 
 
 
