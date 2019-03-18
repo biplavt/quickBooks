@@ -5,12 +5,12 @@ var path = require('path');
 var webtoken = require('./../security/webtoken.js');
 
 
-var quickBookController=require('./../controller/quickBook.controller');
+var quickBookController = require('./../controller/quickBook.controller');
 
 //authentication
 router.use(function(req, res, next) {
     var login = webtoken.token(req.header('x-auth')).then(function(result) {
-    	// console.log('result:',result)
+        // console.log('result:',result)
         if (result) {
             // console.log('authenticated!');
             next();
